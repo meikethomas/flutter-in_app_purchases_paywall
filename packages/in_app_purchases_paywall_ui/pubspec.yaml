@@ -13,10 +13,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_inappwebview: ^5.7.2+3
+  flutter_inappwebview: ^6.1.5
   in_app_purchases_interface: ^1.0.0
   url_launcher: ^6.1.12
-  in_app_purchases_intl: ^1.0.1
+  in_app_purchases_intl:
+    git:
+      url: https://github.com/meikethomas/flutter-in_app_purchases_paywall.git
+      ref: main
+      path: packages/in_app_purchases_intl
   responsive_spacing: ^1.1.0
 
 dev_dependencies:
