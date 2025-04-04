@@ -20,10 +20,17 @@ class LegalRow extends StatelessWidget {
               onTap: () async {
                 final ChromeSafariBrowser browser = ChromeSafariBrowser();
                 await browser.open(
-                    url: Uri.parse(PaywallData.of(context).tosData!.url),
-                    options: ChromeSafariBrowserClassOptions(
-                        android: AndroidChromeCustomTabsOptions(),
-                        ios: IOSSafariOptions(barCollapsingEnabled: true)));
+                  url: WebUri(PaywallData.of(context).tosData!.url),
+                  settings: ChromeSafariBrowserSettings(
+                    // iOS: Navbar beim Scrollen einklappen
+                    barCollapsingEnabled: true,
+                    // (optional) Android: Adressleiste beim Scrollen ausblenden
+                    enableUrlBarHiding: true,
+                    // (optional) Android: Share-Button deaktivieren
+                    shareState: CustomTabsShareState.SHARE_STATE_OFF,
+                    // ... ggf. weitere Plattform-Optionen
+                  )
+                );
               },
               child: Text(
                 tosData.name,
@@ -42,10 +49,17 @@ class LegalRow extends StatelessWidget {
               onTap: () async {
                 final ChromeSafariBrowser browser = ChromeSafariBrowser();
                 await browser.open(
-                    url: Uri.parse(ppData.url),
-                    options: ChromeSafariBrowserClassOptions(
-                        android: AndroidChromeCustomTabsOptions(),
-                        ios: IOSSafariOptions(barCollapsingEnabled: true)));
+                  url: WebUri(ppData.url),
+                  settings: ChromeSafariBrowserSettings(
+                    // iOS: Navbar beim Scrollen einklappen
+                    barCollapsingEnabled: true,
+
+                    // Beispiel-Optionen für Android (optional):
+                    enableUrlBarHiding: true,
+                    shareState: CustomTabsShareState.SHARE_STATE_OFF,
+                    // ...
+                  )
+                );
               },
               child: Text(
                 ppData.name,
