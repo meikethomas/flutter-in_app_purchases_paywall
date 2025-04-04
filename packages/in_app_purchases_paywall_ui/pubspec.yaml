@@ -14,12 +14,16 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_inappwebview: ^6.1.5
-  in_app_purchases_interface: ^1.0.0
+  in_app_purchases_interface:
+    git:
+      url: https://github.com/meikethomas/flutter-in_app_purchases_paywall.git
+      ref: master
+      path: packages/in_app_purchases_interface
   url_launcher: ^6.1.12
   in_app_purchases_intl:
     git:
       url: https://github.com/meikethomas/flutter-in_app_purchases_paywall.git
-      ref: main
+      ref: master
       path: packages/in_app_purchases_intl
   responsive_spacing: ^1.1.0
 
