@@ -5,13 +5,13 @@ class PaywallPage extends Page {
   final Widget child;
 
   PaywallPage({required this.child, String key = "paywall"})
-      : super(key: ValueKey(key));
+    : super(key: ValueKey(key));
 
   @override
   Route createRoute(BuildContext context) => MaterialPageRoute(
-        settings: this,
-        builder: (BuildContext context) {
-          return child;
-        },
-      );
+    settings: this,
+    builder: (BuildContext context) {
+      return child;
+    },
+  );
 }

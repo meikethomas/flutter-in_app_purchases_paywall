@@ -36,45 +36,51 @@ abstract class BasePaywall extends StatefulWidget {
 
   /// Define the Design through the Theme you apply in your
   /// root theme: ThemeData(...)
-  BasePaywall(
-      {super.key,
-      this.title,
-      this.subTitle,
-      this.continueText,
-      this.tosData,
-      this.ppData,
-      this.headerContainer,
-      this.bulletPoints,
-      this.campaignWidget,
-      this.restoreText,
-      this.successTitle,
-      this.successSubTitle,
-      this.successWidget,
-      this.isSubscriptionLoading = false,
-      this.isPurchaseInProgress = false,
-      this.purchaseState = PurchaseState.NOT_PURCHASED,
-      this.subscriptionListData,
-      this.activePlanList,
-      CallbackInterface? callbackInterface,
-      PurchaseStateStreamInterface? purchaseStateStreamInterface}) {
+  BasePaywall({
+    super.key,
+    this.title,
+    this.subTitle,
+    this.continueText,
+    this.tosData,
+    this.ppData,
+    this.headerContainer,
+    this.bulletPoints,
+    this.campaignWidget,
+    this.restoreText,
+    this.successTitle,
+    this.successSubTitle,
+    this.successWidget,
+    this.isSubscriptionLoading = false,
+    this.isPurchaseInProgress = false,
+    this.purchaseState = PurchaseState.NOT_PURCHASED,
+    this.subscriptionListData,
+    this.activePlanList,
+    CallbackInterface? callbackInterface,
+    PurchaseStateStreamInterface? purchaseStateStreamInterface,
+  }) {
     // sort Subscriptions to index
     subscriptionListData?.sort((a, b) => a.index.compareTo(b.index));
 
     // Default handler if no callback is defined
-    var defaultHandler =
-        DefaultPurchaseHandler(initialPurchaseState: purchaseState, initialIsPurchaseInProgress: isPurchaseInProgress);
+    var defaultHandler = DefaultPurchaseHandler(
+      initialPurchaseState: purchaseState,
+      initialIsPurchaseInProgress: isPurchaseInProgress,
+    );
 
     // use this callbackInterface
     this.callbackInterface = callbackInterface ?? defaultHandler;
 
     // if callbackInterface implements the purchase State interface
     // set callbackInterface as PurchaseStream
-    if (purchaseStateStreamInterface == null && this.callbackInterface is PurchaseStateStreamInterface) {
+    if (purchaseStateStreamInterface == null &&
+        this.callbackInterface is PurchaseStateStreamInterface) {
       // set purchaseStream to callbackInterface
-      this.purchaseStateStreamInterface = this.callbackInterface as PurchaseStateStreamInterface;
+      this.purchaseStateStreamInterface =
+          this.callbackInterface as PurchaseStateStreamInterface;
     } else {
       // otherwise set the default handler
-      this.purchaseStateStreamInterface = purchaseStateStreamInterface ?? defaultHandler;
+      this.purchaseStateStreamInterface =
+          purchaseStateStreamInterface ?? defaultHandler;
     }
   }
 }
@@ -89,8 +95,10 @@ abstract class BasePaywallState<T extends BasePaywall> extends State<T> {
 
   @override
   void initState() {
-    purchaseStateStream = widget.purchaseStateStreamInterface.purchaseStateStream();
-    purchaseInProgressStream = widget.purchaseStateStreamInterface.purchaseInProgressStream();
+    purchaseStateStream = widget.purchaseStateStreamInterface
+        .purchaseStateStream();
+    purchaseInProgressStream = widget.purchaseStateStreamInterface
+        .purchaseInProgressStream();
     super.initState();
   }
 
@@ -100,30 +108,41 @@ abstract class BasePaywallState<T extends BasePaywall> extends State<T> {
     return LayoutBuilder(
       builder: (context, constraints) => Spacing(
         width: constraints.maxWidth,
-        child: Builder(builder: (context) {
-          // Stack items. UI then Loading screen
-          return Stack(children: [
-            // FIRST ITEM IS UI
-            GlowingOverscrollIndicator(
-                axisDirection: AxisDirection.down,
-                color: Colors.red,
-                child: ListView(children: [
-                  if (widget.headerContainer != null) widget.headerContainer!,
-                  SubscriptionCallbackIW(
-                      /// This will wrap either the purchase widget or Success widget
-                      /// inside an inherited widget to pass the data to all children
-                      child: PaywallDataIW(
-                        /// returns either the Purchase Widget or the Success Widget
+        child: Builder(
+          builder: (context) {
+            // Stack items. UI then Loading screen
+            return Stack(
+              children: [
+                // FIRST ITEM IS UI
+                GlowingOverscrollIndicator(
+                  axisDirection: AxisDirection.down,
+                  color: Colors.red,
+                  child: ListView(
+                    children: [
+                      if (widget.headerContainer != null)
+                        widget.headerContainer!,
+                      SubscriptionCallbackIW(
+                        /// This will wrap either the purchase widget or Success widget
+                        /// inside an inherited widget to pass the data to all children
+                        child: PaywallDataIW(
+                          /// returns either the Purchase Widget or the Success Widget
                           child: StreamBuilder<PurchaseState>(
                             stream: purchaseStateStream,
                             builder: (context, snapshot) {
                               // if there is no data yet, show a progress Indicator
                               if (!snapshot.hasData) {
-                                return Container(height: 10000, width: 10000, child: Center(child: const CircularProgressIndicator()));
+                                return Container(
+                                  height: 10000,
+                                  width: 10000,
+                                  child: Center(
+                                    child: const CircularProgressIndicator(),
+                                  ),
+                                );
                               }
 
                               // if State is purchased
-                              if (snapshot.hasData && snapshot.data == PurchaseState.PURCHASED) {
+                              if (snapshot.hasData &&
+                                  snapshot.data == PurchaseState.PURCHASED) {
                                 return buildSuccess(context);
                               } else {
                                 // if state is not purchased yet
@@ -132,36 +151,44 @@ abstract class BasePaywallState<T extends BasePaywall> extends State<T> {
                             },
                           ),
                           paywallData: PaywallData(
-                              title: widget.title,
-                              subTitle: widget.subTitle,
-                              continueText: widget.continueText,
-                              tosData: widget.tosData,
-                              ppData: widget.ppData,
-                              bulletPoints: widget.bulletPoints,
-                              campaignWidget: widget.campaignWidget,
-                              restoreText: widget.restoreText,
-                              successTitle: widget.successTitle,
-                              successSubTitle: widget.successSubTitle,
-                              successWidget: widget.successWidget,
-                              activePlanList: widget.activePlanList)),
-                      callbackInterface: widget.callbackInterface,
-                      subscriptionListData: widget.subscriptionListData)
-                ])),
+                            title: widget.title,
+                            subTitle: widget.subTitle,
+                            continueText: widget.continueText,
+                            tosData: widget.tosData,
+                            ppData: widget.ppData,
+                            bulletPoints: widget.bulletPoints,
+                            campaignWidget: widget.campaignWidget,
+                            restoreText: widget.restoreText,
+                            successTitle: widget.successTitle,
+                            successSubTitle: widget.successSubTitle,
+                            successWidget: widget.successWidget,
+                            activePlanList: widget.activePlanList,
+                          ),
+                        ),
+                        callbackInterface: widget.callbackInterface,
+                        subscriptionListData: widget.subscriptionListData,
+                      ),
+                    ],
+                  ),
+                ),
 
-            // LOADING INDICATOR
-            StreamBuilder<bool>(
-                stream: purchaseInProgressStream,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData && snapshot.data == true) {
-                    return const Scaffold(
-                      body: Center(child: CircularProgressIndicator()),
-                      backgroundColor: Color(0x22000000),
-                    );
-                  }
-                  return const SizedBox.shrink();
-                })
-          ]);
-        }),
+                // LOADING INDICATOR
+                StreamBuilder<bool>(
+                  stream: purchaseInProgressStream,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data == true) {
+                      return const Scaffold(
+                        body: Center(child: CircularProgressIndicator()),
+                        backgroundColor: Color(0x22000000),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

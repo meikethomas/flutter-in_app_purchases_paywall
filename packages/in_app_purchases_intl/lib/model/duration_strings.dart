@@ -11,9 +11,10 @@ class DurationStrings {
   /// e.g. 6
   final int durationNumber;
 
-  DurationStrings(
-      {required this.durationText,
-      required this.durationTextNumber,
-      required this.durationType,
-      required this.durationNumber});
+  DurationStrings({
+    required this.durationText,
+    required this.durationTextNumber,
+    required this.durationType,
+    required this.durationNumber,
+  });
 }

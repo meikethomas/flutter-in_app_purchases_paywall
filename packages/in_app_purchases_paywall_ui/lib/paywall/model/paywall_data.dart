@@ -19,23 +19,25 @@ class PaywallData {
   final Widget? successWidget;
   final List<ActivePlan>? activePlanList;
 
-  PaywallData(
-      {this.title,
-      this.subTitle,
-      this.continueText,
-      this.tosData,
-      this.ppData,
-      this.bulletPoints,
-      this.campaignWidget,
-      this.restoreText,
-      this.successTitle,
-      this.successSubTitle,
-      this.successWidget,
-      this.activePlanList});
-
+  PaywallData({
+    this.title,
+    this.subTitle,
+    this.continueText,
+    this.tosData,
+    this.ppData,
+    this.bulletPoints,
+    this.campaignWidget,
+    this.restoreText,
+    this.successTitle,
+    this.successSubTitle,
+    this.successWidget,
+    this.activePlanList,
+  });
 
   static PaywallData of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<PaywallDataIW>()?.paywallData ??
+    return context
+            .dependOnInheritedWidgetOfExactType<PaywallDataIW>()
+            ?.paywallData ??
         (throw StateError("No PaywallDataIW found"));
   }
 }

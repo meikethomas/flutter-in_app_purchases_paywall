@@ -7,7 +7,6 @@ import 'package:in_app_purchases_paywall_ui/paywall/widgets/insets/page_insets.d
 
 /// This Widget is without a scaffold. Use SimplePayWallScaffold if you want to have an appBar
 class SimplePaywallSuccess extends StatelessWidget {
-
   const SimplePaywallSuccess({super.key});
 
   @override
@@ -58,8 +57,8 @@ class SimplePaywallSuccess extends StatelessWidget {
             Padding(
               padding: const PageInsets.normal(),
               child: ActivePlanCard(plan),
-            )
-        ]
+            ),
+        ],
       ],
       primary: false,
       shrinkWrap: true,

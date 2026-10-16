@@ -8,15 +8,18 @@ class MoritzRestoreRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SubscriptionCallbackIW subscriptionData =
-        SubscriptionCallbackIW.of(context)!;
+    SubscriptionCallbackIW subscriptionData = SubscriptionCallbackIW.of(
+      context,
+    )!;
     return TextButton(
-        onPressed: () {
-          subscriptionData.onRestoreTap();
-        },
-        child: Text(
-            PaywallData.of(context).restoreText ??
-                PaywallL10NHelper.of(context).restore_purchase,
-            style: Theme.of(context).textTheme.labelLarge));
+      onPressed: () {
+        subscriptionData.onRestoreTap();
+      },
+      child: Text(
+        PaywallData.of(context).restoreText ??
+            PaywallL10NHelper.of(context).restore_purchase,
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
+    );
   }
 }

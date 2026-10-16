@@ -17,11 +17,14 @@ class ActivePlanCard extends StatelessWidget {
         SizedBox(height: 8),
         if (plan is GooglePlayGeneralActivePlan)
           _ActivePlanGooglePlayGeneralWidget(
-              plan as GooglePlayGeneralActivePlan),
+            plan as GooglePlayGeneralActivePlan,
+          ),
         if (plan is GooglePlayActivePlan)
           _ActivePlanGooglePlayWidget(plan as GooglePlayActivePlan),
         if (plan is AppleAppStoreActivePlan)
-          _ActivePlanAppleAppStoreGeneralWidget(plan as AppleAppStoreActivePlan)
+          _ActivePlanAppleAppStoreGeneralWidget(
+            plan as AppleAppStoreActivePlan,
+          ),
       ],
     );
   }
@@ -41,15 +44,25 @@ class _ActivePlanGooglePlayGeneralWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(PaywallL10NHelper.of(context)
-                .manage_subscription_google_play_title),
+            Text(
+              PaywallL10NHelper.of(
+                context,
+              ).manage_subscription_google_play_title,
+            ),
             SizedBox(height: 12),
             ElevatedButton(
-                onPressed: () async {
-                  await launchUrlString(plan.link, mode: LaunchMode.externalApplication);
-                },
-                child: Text(PaywallL10NHelper.of(context)
-                    .manage_subscription_google_play_button))
+              onPressed: () async {
+                await launchUrlString(
+                  plan.link,
+                  mode: LaunchMode.externalApplication,
+                );
+              },
+              child: Text(
+                PaywallL10NHelper.of(
+                  context,
+                ).manage_subscription_google_play_button,
+              ),
+            ),
           ],
         ),
       ),
@@ -71,15 +84,25 @@ class _ActivePlanGooglePlayWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(PaywallL10NHelper.of(context)
-                .manage_subscription_google_play_title),
+            Text(
+              PaywallL10NHelper.of(
+                context,
+              ).manage_subscription_google_play_title,
+            ),
             SizedBox(height: 12),
             ElevatedButton(
-                onPressed: () async {
-                  await launchUrlString(plan.link, mode: LaunchMode.externalApplication);
-                },
-                child: Text(PaywallL10NHelper.of(context)
-                    .manage_subscription_productId(plan.productId)))
+              onPressed: () async {
+                await launchUrlString(
+                  plan.link,
+                  mode: LaunchMode.externalApplication,
+                );
+              },
+              child: Text(
+                PaywallL10NHelper.of(
+                  context,
+                ).manage_subscription_productId(plan.productId),
+              ),
+            ),
           ],
         ),
       ),
@@ -101,15 +124,25 @@ class _ActivePlanAppleAppStoreGeneralWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(PaywallL10NHelper.of(context)
-                .manage_subscription_apple_appstore_title),
+            Text(
+              PaywallL10NHelper.of(
+                context,
+              ).manage_subscription_apple_appstore_title,
+            ),
             SizedBox(height: 12),
             ElevatedButton(
-                onPressed: () async {
-                  await launchUrlString(plan.link, mode: LaunchMode.externalApplication);
-                },
-                child: Text(PaywallL10NHelper.of(context)
-                    .manage_subscription_apple_appstore_button))
+              onPressed: () async {
+                await launchUrlString(
+                  plan.link,
+                  mode: LaunchMode.externalApplication,
+                );
+              },
+              child: Text(
+                PaywallL10NHelper.of(
+                  context,
+                ).manage_subscription_apple_appstore_button,
+              ),
+            ),
           ],
         ),
       ),

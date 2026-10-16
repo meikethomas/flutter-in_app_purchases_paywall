@@ -7,7 +7,9 @@ abstract class PaywallL10NHelper {
   /// PaywallLocalization with fallback to EN
   static PaywallLocalizations of(BuildContext context) {
     return Localizations.of<PaywallLocalizations>(
-            context, PaywallLocalizations) ??
+          context,
+          PaywallLocalizations,
+        ) ??
         PaywallLocalizationsEn();
   }
 }

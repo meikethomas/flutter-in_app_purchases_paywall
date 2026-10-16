@@ -9,10 +9,11 @@ class SubscriptionCallbackIW extends InheritedWidget {
   /// Custom interface which gets called for tap events
   final CallbackInterface callbackInterface;
 
-  SubscriptionCallbackIW(
-      {required super.child,
-      required this.callbackInterface,
-      this.subscriptionListData});
+  SubscriptionCallbackIW({
+    required super.child,
+    required this.callbackInterface,
+    this.subscriptionListData,
+  });
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;

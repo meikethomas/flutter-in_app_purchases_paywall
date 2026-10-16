@@ -1,4 +1,4 @@
-library in_app_purchases_paywall_ui;
+library;
 
 export 'paywall/default/default_purchase_handler.dart';
 export 'paywall/simple/simple_paywall.dart';

@@ -49,7 +49,8 @@ class _SimplePaywallState extends BasePaywallState<SimplePaywall> {
   @override
   Widget buildPaywall(BuildContext context) {
     return SimplePaywallPurchase(
-        isSubscriptionLoading: widget.isSubscriptionLoading);
+      isSubscriptionLoading: widget.isSubscriptionLoading,
+    );
   }
 
   @override

@@ -12,28 +12,37 @@ class MoritzBulletPoints extends StatelessWidget {
     PaywallData paywallData = PaywallData.of(context);
     ThemeData theme = Theme.of(context);
     return Column(
-      children: paywallData.bulletPoints
-              ?.map((bulletPoint) => Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(shape: BoxShape.circle, color: theme.colorScheme.primary),
-                        height: context.spacing.s,
-                        width: context.spacing.s,
+      children:
+          paywallData.bulletPoints
+              ?.map(
+                (bulletPoint) => Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: theme.colorScheme.primary,
                       ),
-                      const GutterRow(),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: context.spacingConfig.padding.size, vertical: 8),
-                          child: Text(
-                            bulletPoint.text,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.bodyLarge,
-                          ),
+                      height: context.spacing.s,
+                      width: context.spacing.s,
+                    ),
+                    const GutterRow(),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: context.spacingConfig.padding.size,
+                          vertical: 8,
+                        ),
+                        child: Text(
+                          bulletPoint.text,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodyLarge,
                         ),
                       ),
-                    ],
-                  ))
+                    ),
+                  ],
+                ),
+              )
               .toList(growable: false) ??
           [],
     );

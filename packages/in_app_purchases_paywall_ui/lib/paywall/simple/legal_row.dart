@@ -31,16 +31,18 @@ class LegalRow extends StatelessWidget {
                     // (optional) Android: Share-Button deaktivieren
                     shareState: CustomTabsShareState.SHARE_STATE_OFF,
                     // ... ggf. weitere Plattform-Optionen
-                  )
+                  ),
                 );
               },
               child: Text(
                 tosData.name,
                 style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Theme.of(context).textTheme.labelLarge?.color ??
-                        Theme.of(context).primaryColor,
-                    fontStyle: Theme.of(context).textTheme.bodySmall!.fontStyle),
+                  decoration: TextDecoration.underline,
+                  color:
+                      Theme.of(context).textTheme.labelLarge?.color ??
+                      Theme.of(context).primaryColor,
+                  fontStyle: Theme.of(context).textTheme.bodySmall!.fontStyle,
+                ),
               ),
             ),
           ),
@@ -60,19 +62,21 @@ class LegalRow extends StatelessWidget {
                     enableUrlBarHiding: true,
                     shareState: CustomTabsShareState.SHARE_STATE_OFF,
                     // ...
-                  )
+                  ),
                 );
               },
               child: Text(
                 ppData.name,
                 style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Theme.of(context).textTheme.labelLarge?.color ??
-                        Theme.of(context).primaryColor,
-                    fontStyle: Theme.of(context).textTheme.bodySmall!.fontStyle),
+                  decoration: TextDecoration.underline,
+                  color:
+                      Theme.of(context).textTheme.labelLarge?.color ??
+                      Theme.of(context).primaryColor,
+                  fontStyle: Theme.of(context).textTheme.bodySmall!.fontStyle,
+                ),
               ),
             ),
-          )
+          ),
       ],
     );
   }

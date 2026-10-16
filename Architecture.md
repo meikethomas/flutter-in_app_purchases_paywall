@@ -82,6 +82,9 @@ no localization delegate exists in the widget tree.
   and is generated locally for reproducible review commands.
 - Example resolution must keep all three sibling `rootUri` values inside this
   checkout. A hosted or Git-cache sibling is not an equivalent demo input.
+- UI cleanup tests use canonical local Interface/Intl roots while developing;
+  after publication, Git-cache roots are accepted only when repository path,
+  origin, clean worktree, and package-tree identity match this checkout.
 - Native build evidence must be produced from the Example working directory
   with the App-bound Flutter 3.44.9 executable, never with a global SDK or the
   consuming App's host project.
@@ -92,7 +95,9 @@ Use Flutter 3.44.9 for every package. Resolve each package separately, run
 `gen-l10n` from the Intl package, then run package tests and analysis with
 `--no-pub` where reproducibility matters. Example fast tests cover all three
 entry points, localization, simulated purchase/restore, local package roots,
-and native configuration pins. Its separate native test builds and inspects a
-real debug APK and iOS Simulator app. After the upgrade branch is pushed, the
-final UI resolution and a separate consumer must use Git sources without path
+and native configuration pins. `MMB0014_source_cleanup_regression` reuses the
+established behavior cases and proves that UI tests exercise the cleaned
+sibling package trees. The separate native test builds and inspects a real
+debug APK and iOS Simulator app. After the upgrade branch is pushed, the final
+UI resolution and a separate consumer must use Git sources without path
 overrides.

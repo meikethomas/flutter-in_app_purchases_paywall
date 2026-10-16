@@ -13,10 +13,7 @@ import 'package:responsive_spacing/widgets/page_divider.dart';
 class SimplePaywallPurchase extends StatelessWidget {
   final bool isSubscriptionLoading;
 
-  const SimplePaywallPurchase({
-    super.key,
-    this.isSubscriptionLoading = false,
-  });
+  const SimplePaywallPurchase({super.key, this.isSubscriptionLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -31,50 +28,63 @@ class SimplePaywallPurchase extends StatelessWidget {
       children: [
         const GutterColumn(),
         PageDivider2(
-            first: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          first: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
               const GutterColumn(),
               Text(
-                paywallData.title ?? PaywallL10NHelper.of(context).app_bar_default_title,
+                paywallData.title ??
+                    PaywallL10NHelper.of(context).app_bar_default_title,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
 
               // add SubTitle
-              if (paywallData.subTitle != null) Text(paywallData.subTitle!, style: Theme.of(context).textTheme.bodyMedium),
+              if (paywallData.subTitle != null)
+                Text(
+                  paywallData.subTitle!,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
 
               const GutterColumn(),
 
-              if (paywallData.bulletPoints != null) SimpleBulletPoints(paywallData.bulletPoints!),
-            ]),
-            second: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const GutterColumn(),
-                if (paywallData.campaignWidget != null) paywallData.campaignWidget!,
-                const GutterColumn(),
-                if (inheritedWidget.subscriptionListData != null)
-                  SubscriptionRow(
-                      subscriptionListData: inheritedWidget.subscriptionListData!,
-                      isSubscriptionLoading: isSubscriptionLoading),
-                const GutterColumn(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      child: Text(
-                        paywallData.restoreText ?? PaywallL10NHelper.of(context).restore_purchase,
-                      ),
-                      style: Theme.of(context).textButtonTheme.style,
-                      onPressed: () {
-                        SubscriptionCallbackIW.of(context)?.onRestoreTap();
-                      },
-                    ),
-                  ],
+              if (paywallData.bulletPoints != null)
+                SimpleBulletPoints(paywallData.bulletPoints!),
+            ],
+          ),
+          second: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const GutterColumn(),
+              if (paywallData.campaignWidget != null)
+                paywallData.campaignWidget!,
+              const GutterColumn(),
+              if (inheritedWidget.subscriptionListData != null)
+                SubscriptionRow(
+                  subscriptionListData: inheritedWidget.subscriptionListData!,
+                  isSubscriptionLoading: isSubscriptionLoading,
                 ),
-                const GutterColumn(),
-                const LegalRow(),
-                const GutterColumn(),
-              ],
-            )),
+              const GutterColumn(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    child: Text(
+                      paywallData.restoreText ??
+                          PaywallL10NHelper.of(context).restore_purchase,
+                    ),
+                    style: Theme.of(context).textButtonTheme.style,
+                    onPressed: () {
+                      SubscriptionCallbackIW.of(context)?.onRestoreTap();
+                    },
+                  ),
+                ],
+              ),
+              const GutterColumn(),
+              const LegalRow(),
+              const GutterColumn(),
+            ],
+          ),
+        ),
       ],
     );
   }

@@ -4,7 +4,8 @@ import 'package:in_app_purchases_interface/in_app_purchases_interface.dart';
 
 /// Default Purchase Handler
 /// Extend for your own logic
-class DefaultPurchaseHandler implements PurchaseStateStreamInterface, CallbackInterface {
+class DefaultPurchaseHandler
+    implements PurchaseStateStreamInterface, CallbackInterface {
   /// initial value for purchase in Progress
   final bool initialIsPurchaseInProgress;
 
@@ -21,8 +22,10 @@ class DefaultPurchaseHandler implements PurchaseStateStreamInterface, CallbackIn
   /// opens and the purchase state is NOT_PURCHASED
   bool _loadedSubscriptionsOnce = false;
 
-  DefaultPurchaseHandler(
-      {this.initialIsPurchaseInProgress = false, this.initialPurchaseState = PurchaseState.NOT_PURCHASED}) {
+  DefaultPurchaseHandler({
+    this.initialIsPurchaseInProgress = false,
+    this.initialPurchaseState = PurchaseState.NOT_PURCHASED,
+  }) {
     _isPendingPurchase = initialIsPurchaseInProgress;
     _purchaseState = initialPurchaseState;
   }
@@ -52,7 +55,8 @@ class DefaultPurchaseHandler implements PurchaseStateStreamInterface, CallbackIn
 
   //#region PurchaseState
   /// StreamController list of Pending Purchase Streams
-  final List<StreamController<PurchaseState>> _streamControllerPurchaseState = [];
+  final List<StreamController<PurchaseState>> _streamControllerPurchaseState =
+      [];
 
   /// Sets the value and updates all Stream listeners
   ///

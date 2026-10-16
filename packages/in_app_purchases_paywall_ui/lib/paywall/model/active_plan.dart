@@ -21,7 +21,8 @@ class GooglePlayActivePlan extends ActivePlan {
   const GooglePlayActivePlan(this.productId, this.package);
 
   @override
-  String get link => "https://play.google.com/store/account/subscriptions?sku=$productId&package=$package";
+  String get link =>
+      "https://play.google.com/store/account/subscriptions?sku=$productId&package=$package";
 }
 
 ///
