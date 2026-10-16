@@ -1,6 +1,8 @@
+// ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'paywall_localizations.dart';
+
+// ignore_for_file: type=lint
 
 /// The translations for German (`de`).
 class PaywallLocalizationsDe extends PaywallLocalizations {
@@ -90,10 +92,12 @@ class PaywallLocalizationsDe extends PaywallLocalizations {
   String get manage_subscriptions_title => 'Abonnements verwalten';
 
   @override
-  String get manage_subscription_google_play_title => 'Abonnements auf Google Play verwalten';
+  String get manage_subscription_google_play_title =>
+      'Abonnements auf Google Play verwalten';
 
   @override
-  String get manage_subscription_google_play_button => 'Google Play-Abonnements';
+  String get manage_subscription_google_play_button =>
+      'Google Play-Abonnements';
 
   @override
   String manage_subscription_productId(String productId) {
@@ -101,10 +105,12 @@ class PaywallLocalizationsDe extends PaywallLocalizations {
   }
 
   @override
-  String get manage_subscription_apple_appstore_title => 'Abonnements im App Store verwalten';
+  String get manage_subscription_apple_appstore_title =>
+      'Abonnements im App Store verwalten';
 
   @override
-  String get manage_subscription_apple_appstore_button => 'Zu den App Store Abonnements';
+  String get manage_subscription_apple_appstore_button =>
+      'Zu den App Store Abonnements';
 
   @override
   String get subscription_options_title => 'Abonnement Optionen';

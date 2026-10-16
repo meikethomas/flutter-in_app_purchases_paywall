@@ -63,8 +63,7 @@ PaywallL10NHelper.of(context).nweek(4)
 * Check out the project
 * Open the file lib > l10n > paywall_en.arb
 * Copy it with the language you would like to translate. e.g. paywall_es.arb
-* Run flutter pub get packages (this will generate the dart files)
-* Check out the folder: .dart_tool > flutter_gen > gen_l10n
-* Inside you will find your generated language (if you don't see it, delete the .dart_tool folder and run the command again)
-* Copy all files to lib > delegate. 
-* Done! Commit, create a pull request, the community will definitely thank you! 
+* From this package directory run `fvm spawn 3.44.9 gen-l10n`.
+* The configured generator writes the public API directly to `lib/delegate`.
+* Review the generated files and commit them together with the ARB change.
+* Done! Create a pull request; the community will definitely thank you!

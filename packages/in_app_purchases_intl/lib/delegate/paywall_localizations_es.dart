@@ -1,6 +1,8 @@
+// ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'paywall_localizations.dart';
+
+// ignore_for_file: type=lint
 
 /// The translations for Spanish Castilian (`es`).
 class PaywallLocalizationsEs extends PaywallLocalizations {
@@ -90,10 +92,12 @@ class PaywallLocalizationsEs extends PaywallLocalizations {
   String get manage_subscriptions_title => 'Gestionar las suscripciones';
 
   @override
-  String get manage_subscription_google_play_title => 'Gestionar las suscripciones en Google Play';
+  String get manage_subscription_google_play_title =>
+      'Gestionar las suscripciones en Google Play';
 
   @override
-  String get manage_subscription_google_play_button => 'Suscripciones a Google Play';
+  String get manage_subscription_google_play_button =>
+      'Suscripciones a Google Play';
 
   @override
   String manage_subscription_productId(String productId) {
@@ -101,10 +105,12 @@ class PaywallLocalizationsEs extends PaywallLocalizations {
   }
 
   @override
-  String get manage_subscription_apple_appstore_title => 'Gestione sus suscripciones en la App Store';
+  String get manage_subscription_apple_appstore_title =>
+      'Gestione sus suscripciones en la App Store';
 
   @override
-  String get manage_subscription_apple_appstore_button => 'Ir a la página de suscripciones';
+  String get manage_subscription_apple_appstore_button =>
+      'Ir a la página de suscripciones';
 
   @override
   String get subscription_options_title => 'Opciones de suscripción';

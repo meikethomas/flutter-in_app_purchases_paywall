@@ -9,6 +9,8 @@ import 'paywall_localizations_de.dart';
 import 'paywall_localizations_en.dart';
 import 'paywall_localizations_es.dart';
 
+// ignore_for_file: type=lint
+
 /// Callers can lookup localized strings with an instance of PaywallLocalizations
 /// returned by `PaywallLocalizations.of(context)`.
 ///
@@ -17,7 +19,7 @@ import 'paywall_localizations_es.dart';
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'gen_l10n/paywall_localizations.dart';
+/// import 'delegate/paywall_localizations.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: PaywallLocalizations.localizationsDelegates,
@@ -61,15 +63,18 @@ import 'paywall_localizations_es.dart';
 /// be consistent with the languages listed in the PaywallLocalizations.supportedLocales
 /// property.
 abstract class PaywallLocalizations {
-  PaywallLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  PaywallLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static PaywallLocalizations? of(BuildContext context) {
-    return Localizations.of<PaywallLocalizations>(context, PaywallLocalizations);
+    return Localizations.of<PaywallLocalizations>(
+        context, PaywallLocalizations);
   }
 
-  static const LocalizationsDelegate<PaywallLocalizations> delegate = _PaywallLocalizationsDelegate();
+  static const LocalizationsDelegate<PaywallLocalizations> delegate =
+      _PaywallLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,7 +86,8 @@ abstract class PaywallLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -246,35 +252,38 @@ abstract class PaywallLocalizations {
   String get app_bar_default_title;
 }
 
-class _PaywallLocalizationsDelegate extends LocalizationsDelegate<PaywallLocalizations> {
+class _PaywallLocalizationsDelegate
+    extends LocalizationsDelegate<PaywallLocalizations> {
   const _PaywallLocalizationsDelegate();
 
   @override
   Future<PaywallLocalizations> load(Locale locale) {
-    return SynchronousFuture<PaywallLocalizations>(lookupPaywallLocalizations(locale));
+    return SynchronousFuture<PaywallLocalizations>(
+        lookupPaywallLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['de', 'en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['de', 'en', 'es'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_PaywallLocalizationsDelegate old) => false;
 }
 
 PaywallLocalizations lookupPaywallLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'de': return PaywallLocalizationsDe();
-    case 'en': return PaywallLocalizationsEn();
-    case 'es': return PaywallLocalizationsEs();
+    case 'de':
+      return PaywallLocalizationsDe();
+    case 'en':
+      return PaywallLocalizationsEn();
+    case 'es':
+      return PaywallLocalizationsEs();
   }
 
   throw FlutterError(
-    'PaywallLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'PaywallLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

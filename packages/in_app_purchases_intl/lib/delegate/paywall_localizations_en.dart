@@ -1,6 +1,8 @@
+// ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'paywall_localizations.dart';
+
+// ignore_for_file: type=lint
 
 /// The translations for English (`en`).
 class PaywallLocalizationsEn extends PaywallLocalizations {
@@ -90,10 +92,12 @@ class PaywallLocalizationsEn extends PaywallLocalizations {
   String get manage_subscriptions_title => 'Manage subscriptions';
 
   @override
-  String get manage_subscription_google_play_title => 'Manage your subscriptions on Google Play';
+  String get manage_subscription_google_play_title =>
+      'Manage your subscriptions on Google Play';
 
   @override
-  String get manage_subscription_google_play_button => 'Google Play Subscriptions';
+  String get manage_subscription_google_play_button =>
+      'Google Play Subscriptions';
 
   @override
   String manage_subscription_productId(String productId) {
@@ -101,10 +105,12 @@ class PaywallLocalizationsEn extends PaywallLocalizations {
   }
 
   @override
-  String get manage_subscription_apple_appstore_title => 'Manage your subscriptions on the App Store';
+  String get manage_subscription_apple_appstore_title =>
+      'Manage your subscriptions on the App Store';
 
   @override
-  String get manage_subscription_apple_appstore_button => 'Go to the subscriptions page';
+  String get manage_subscription_apple_appstore_button =>
+      'Go to the subscriptions page';
 
   @override
   String get subscription_options_title => 'Subscription options';
