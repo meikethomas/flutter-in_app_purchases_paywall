@@ -54,8 +54,10 @@ The upgrade is validated with Flutter 3.44.9 / Dart 3.12.2.
 ### Upgrade evidence
 
 - Baseline: `c63a21d720ea24d5130cac823536c1ebf385248a`
-- Implementation commit: recorded after the first branch push
-- Final remote branch SHA: recorded after the evidence update
+- Git-consumer-verified implementation commit:
+  `3af4b2437b7c63237449883c8565454a87b802f7`
+- The final evidence/documentation commit follows that implementation commit;
+  its remote branch SHA is recorded in the MMB-0010 result artifact.
 - Package resolution: separate online and offline locked checks for Interface,
   Intl, and Paywall UI
 - Regression coverage: legal-link visibility/dispatch, callback forwarding,
@@ -64,5 +66,8 @@ The upgrade is validated with Flutter 3.44.9 / Dart 3.12.2.
 - Analyzer boundary: zero errors and zero external deprecation diagnostics;
   existing style infos and the publish warning for intentional Git dependencies
   are documented in the story result
+- Canonical review: `mmb0010_marker_tests`, `mmb0010_targeted_tests`,
+  `mmb0010_acceptance_contract`, and `mmb0010_review_hardening` pass; the
+  targeted suites select 3 UI cases, 9 duration cases, and 1 localization case
 - Device boundary: real iOS ChromeSafariBrowser presentation remains a manual
   device check; widget tests verify platform dispatch without opening a browser

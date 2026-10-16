@@ -64,13 +64,15 @@ import 'paywall_localizations_es.dart';
 /// property.
 abstract class PaywallLocalizations {
   PaywallLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static PaywallLocalizations? of(BuildContext context) {
     return Localizations.of<PaywallLocalizations>(
-        context, PaywallLocalizations);
+      context,
+      PaywallLocalizations,
+    );
   }
 
   static const LocalizationsDelegate<PaywallLocalizations> delegate =
@@ -88,17 +90,17 @@ abstract class PaywallLocalizations {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('de'),
     Locale('en'),
-    Locale('es')
+    Locale('es'),
   ];
 
   /// No description provided for @weekly.
@@ -259,7 +261,8 @@ class _PaywallLocalizationsDelegate
   @override
   Future<PaywallLocalizations> load(Locale locale) {
     return SynchronousFuture<PaywallLocalizations>(
-        lookupPaywallLocalizations(locale));
+      lookupPaywallLocalizations(locale),
+    );
   }
 
   @override
@@ -282,8 +285,9 @@ PaywallLocalizations lookupPaywallLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-      'PaywallLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'PaywallLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }
