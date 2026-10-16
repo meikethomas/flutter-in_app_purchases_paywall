@@ -71,3 +71,29 @@ The upgrade is validated with Flutter 3.44.9 / Dart 3.12.2.
   targeted suites select 3 UI cases, 9 duration cases, and 1 localization case
 - Device boundary: real iOS ChromeSafariBrowser presentation remains a manual
   device check; widget tests verify platform dispatch without opening a browser
+
+### Native example
+
+The repository's standalone `example/` now resolves and builds with the
+App-bound Flutter 3.44.9 SDK. Unlike the published package manifests, it uses
+repository-relative sibling paths intentionally so every demo run exercises
+the checkout under development.
+
+| Direct Example input | Before | After | Decision |
+| --- | --- | --- | --- |
+| Dart / Flutter environment | Dart `^3.0.0`, Flutter `^3.10.0` | Dart `>=3.11.0 <4.0.0`, Flutter `>=3.41.0` | Matches the upgraded UI package floors while Flutter 3.44.9 / Dart 3.12.2 is the verified toolchain. |
+| `flutter` | SDK | SDK | Runtime remains SDK-provided. |
+| `flutter_localizations` | SDK | SDK | Required by both localized entry points and supplies the SDK Intl pin. |
+| `flutter_countdown_timer` | `^4.1.0` | `^4.1.0` | Used by the simple demos; 4.1.0 remains the latest resolvable release. |
+| `in_app_purchases_paywall_ui` | Hosted `^1.0.0`, locally overridden | Direct path `../packages/in_app_purchases_paywall_ui` plus path override | The demo must compile the current local UI package. |
+| `in_app_purchases_intl` | Hosted `^1.0.1` | Direct path `../packages/in_app_purchases_intl` plus path override | Localized demos must use the current generated localizations. |
+| `in_app_purchases_interface` | Hosted transitively | Path override `../packages/in_app_purchases_interface` | Prevents the UI package's Git dependency from resolving outside this checkout. |
+| `intl` | `^0.18.0` | `^0.20.2` | Flutter 3.44.9 pins 0.20.2; no 0.18/0.19 override remains. |
+| `cupertino_icons` | `^1.0.5` | removed | No Example source imports or uses it. |
+| `responsive_spacing` | direct `^1.1.0` | direct declaration removed | No Example source imports it; it remains a transitive UI dependency at 1.1.0. |
+| `flutter_test` | SDK | SDK | Required by widget, source-contract, and native build tests. |
+
+The Android host uses the Flutter plugin DSL with AGP 8.10.1, Gradle 8.11.1,
+Kotlin 2.1.21, Java 17, and API 36. The CocoaPods iOS host uses one
+`FlutterSceneDelegate` scene and deployment target 15. Both retain
+`io.linkfive.example`. See `example/README.md` for entry points and commands.

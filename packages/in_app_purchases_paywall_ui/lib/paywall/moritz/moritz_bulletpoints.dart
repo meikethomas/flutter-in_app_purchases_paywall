@@ -21,12 +21,15 @@ class MoritzBulletPoints extends StatelessWidget {
                         width: context.spacing.s,
                       ),
                       const GutterRow(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: context.spacingConfig.padding.size, vertical: 8),
-                        child: Text(
-                          bulletPoint.text,
-                          maxLines: 2,
-                          style: theme.textTheme.bodyLarge,
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: context.spacingConfig.padding.size, vertical: 8),
+                          child: Text(
+                            bulletPoint.text,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.bodyLarge,
+                          ),
                         ),
                       ),
                     ],

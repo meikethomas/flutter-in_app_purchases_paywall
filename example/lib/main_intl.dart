@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:in_app_purchases_intl/in_app_purchases_intl.dart';
@@ -43,6 +44,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   PurchaseHandler purchaseHandler = PurchaseHandler();
+  late final CountdownTimerController _countdownController;
+
+  @override
+  void initState() {
+    super.initState();
+    _countdownController = CountdownTimerController(
+      endTime: DateTime.now()
+          .add(Duration(days: 2, hours: 7))
+          .millisecondsSinceEpoch,
+    );
+  }
+
+  @override
+  void dispose() {
+    _countdownController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,11 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
             headline: "🥳 Summer Special Sale",
             subContent: Container(
                 padding: EdgeInsets.all(8),
-                child: CountdownTimer(
-                  endTime: DateTime.now()
-                      .add(Duration(days: 2, hours: 7))
-                      .millisecondsSinceEpoch,
-                )),
+                child: CountdownTimer(controller: _countdownController)),
           )),
     );
   }

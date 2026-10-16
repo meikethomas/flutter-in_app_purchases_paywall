@@ -10,8 +10,10 @@ class LegalRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final tosData = PaywallData.of(context).tosData;
     final ppData = PaywallData.of(context).ppData;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 4,
+      runSpacing: 4,
       children: [
         if (tosData != null)
           Container(

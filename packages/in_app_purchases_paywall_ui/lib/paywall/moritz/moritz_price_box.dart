@@ -137,19 +137,23 @@ class _PricePerMonthWidget extends StatelessWidget {
     double pricePerMonth = data.rawPrice! / months;
     return Padding(
       padding: EdgeInsets.only(top: context.spacingConfig.padding.size),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              "${pricePerMonth.toStringAsFixed(2)}${data.currencySymbol}",
-              style: Theme.of(context).textTheme.titleMedium?.apply(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer),
-            ),
-            Text("/${data.monthText ?? "month"}",
-                style: Theme.of(context).textTheme.titleSmall?.apply(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer))
-          ]),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                "${pricePerMonth.toStringAsFixed(2)}${data.currencySymbol}",
+                style: Theme.of(context).textTheme.titleMedium?.apply(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer),
+              ),
+              Text("/${data.monthText ?? "month"}",
+                  style: Theme.of(context).textTheme.titleSmall?.apply(
+                      color: Theme.of(context).colorScheme.onPrimaryContainer))
+            ]),
+      ),
     );
   }
 }

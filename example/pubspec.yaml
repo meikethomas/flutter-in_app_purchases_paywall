@@ -5,22 +5,26 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.0.0
-  flutter: ^3.10.0
+  sdk: ">=3.11.0 <4.0.0"
+  flutter: ">=3.41.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_countdown_timer: ^4.1.0
-  in_app_purchases_paywall_ui: ^1.0.0
-  in_app_purchases_intl: ^1.0.1
+  in_app_purchases_paywall_ui:
+    path: ../packages/in_app_purchases_paywall_ui
+  in_app_purchases_intl:
+    path: ../packages/in_app_purchases_intl
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.0
-  cupertino_icons: ^1.0.5
-  responsive_spacing: ^1.1.0
+  intl: ^0.20.2
 
 dependency_overrides:
+  in_app_purchases_interface:
+    path: ../packages/in_app_purchases_interface
+  in_app_purchases_intl:
+    path: ../packages/in_app_purchases_intl
   in_app_purchases_paywall_ui:
     path: ../packages/in_app_purchases_paywall_ui
 
@@ -29,6 +33,9 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  # Keep this example on its existing CocoaPods integration.
+  config:
+    enable-swift-package-manager: false
   uses-material-design: true
   assets:
     - assets/images/

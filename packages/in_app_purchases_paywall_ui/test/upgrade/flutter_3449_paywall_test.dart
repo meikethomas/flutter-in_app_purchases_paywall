@@ -125,6 +125,95 @@ void main() {
     expect(find.text('Success state'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
+
+  testWidgets('MMB0010_compact_paywall_content_remains_bounded', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(430, 932);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SimplePaywall(
+            title: 'Compact paywall',
+            bulletPoints: const <IconAndText>[
+              IconAndText(
+                Icons.article_outlined,
+                'Access to All Premium Articles',
+              ),
+            ],
+            tosData: const TextAndUrl(
+              'Terms of Service',
+              'https://example.com/terms',
+            ),
+            ppData: const TextAndUrl(
+              'Privacy Policy',
+              'https://example.com/privacy',
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.text('Access to All Premium Articles'), findsOneWidget);
+    expect(find.text('Terms of Service'), findsOneWidget);
+    expect(find.text('Privacy Policy'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: MoritzPaywall(
+            title: 'Compact Moritz paywall',
+            subTitle: 'All premium advantages',
+            continueText: 'Continue',
+            bulletPoints: const <IconAndText>[
+              IconAndText(
+                Icons.article_outlined,
+                'Access to All Premium Articles',
+              ),
+            ],
+            subscriptionListData: <SubscriptionData>[
+              SubscriptionData(
+                durationTitle: 'Yearly',
+                durationShort: '12 months',
+                price: '€14.99',
+                dealPercentage: 59,
+                productDetails: 'yearly',
+                currencySymbol: '€',
+                rawPrice: 14.99,
+                monthText: 'month',
+                duration: 'P1Y',
+                index: 0,
+              ),
+              SubscriptionData(
+                durationTitle: 'Monthly',
+                durationShort: '1 month',
+                price: '€2.99',
+                dealPercentage: 0,
+                productDetails: 'monthly',
+                currencySymbol: '€',
+                rawPrice: 2.99,
+                monthText: 'month',
+                duration: 'P1M',
+                index: 1,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.text('Access to All Premium Articles'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }
 
 Future<void> _pumpLegalRow(
